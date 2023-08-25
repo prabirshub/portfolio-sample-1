@@ -1,45 +1,43 @@
 'use client'
-
 import { Playfair_Display } from 'next/font/google'
 
 const playfair = Playfair_Display({ subsets: ['latin'] })
 
-// import testimonils data
-import { testimonials } from '@/constants'
-
-// import swiper react components
+// import swiper react comp
 import { Swiper, SwiperSlide } from 'swiper/react'
 
-// import swiper styles
+//import swiper styles
 import 'swiper/css'
 import 'swiper/css/pagination'
-import '../app/swiper.css'
+import './swiper.css'
+
+import { Autoplay, Pagination } from 'swiper/modules'
 
 // import required modules
-import { Autoplay, Pagination } from 'swiper'
+import { testimonials } from '@/constants'
 import Image from 'next/image'
 
 const TestimonialSlider = () => {
   return (
     <>
       <Swiper
-        Pagination={{
+        pagination={{
           clickable: true,
         }}
         autoplay={{
           delay: 2500,
           disableOnInteraction: false,
         }}
-        modules={{ Autoplay, Pagination }}
+        modules={[Autoplay, Pagination]}
         className='mySwiper'
       >
         {testimonials.map((item, index) => {
-          const { authorImg, authorText, authorName, authorPosition } = item
+          const { authorImg, authorPosition, authorName, authorText } = item
           return (
             <SwiperSlide key={index}>
-              <div className='flex flex-col lg:flex-row gap-12 lg:gap-32'>
+              <div className='flex flex-col lg:flex-row gap-12 lg:gap-32 mb-12 lg:mb-0'>
                 <div className='w-48 h-48 lg:w-[328px] lg:h-[328px]'>
-                  <Image src={authorImg} alt='' className='rounded-2xl' />
+                  <Image className='rounded-2xl' src={authorImg} alt='' />
                 </div>
                 <div className='flex flex-col max-w-3xl'>
                   <h5
